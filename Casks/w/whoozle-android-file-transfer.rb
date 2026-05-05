@@ -8,11 +8,20 @@ cask "whoozle-android-file-transfer" do
   desc "Android File Transfer for Linux"
   homepage "https://whoozle.github.io/android-file-transfer-linux/"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "Android File Transfer for Linux.app"
   binary "#{appdir}/Android File Transfer for Linux.app/Contents/SharedSupport/bin/aft-mtp-cli"
   binary "#{appdir}/Android File Transfer for Linux.app/Contents/SharedSupport/bin/aft-mtp-mount"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   # No zap stanza required
 

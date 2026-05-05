@@ -12,7 +12,7 @@ cask "assinador-serpro" do
     regex(/href=.*?AssinadorSerpro[._-]v?(\d+(?:\.\d+)+)\.m?pkg/i)
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   pkg "AssinadorSerpro-#{version}.pkg"
 

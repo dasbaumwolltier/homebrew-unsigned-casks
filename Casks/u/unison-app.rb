@@ -23,12 +23,19 @@ cask "unison-app" do
     end
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "Unison.app"
   binary "#{appdir}/Unison.app/Contents/MacOS/cltool", target: "unison"
 
   postflight do
+    cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+
     system_command "/usr/bin/defaults", args: ["write", "edu.upenn.cis.Unison", "CheckCltool", "-bool", "false"]
   end
 

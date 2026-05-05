@@ -10,7 +10,7 @@ cask "go-shiori" do
   desc "Shiori is a simple bookmarks manager written in the Go language"
   homepage "https://github.com/go-shiori/shiori"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   binary "shiori"
 

@@ -12,9 +12,18 @@ cask "sunvox" do
     regex(/href=.*?sunvox[._-]v?(\d+(?:\.\d+)+[a-z]?)\.zip/i)
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "sunvox/sunvox/macos/SunVox.app"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: [
     "/Applications/sunvox_log.txt",

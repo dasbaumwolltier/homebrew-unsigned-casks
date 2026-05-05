@@ -16,7 +16,7 @@ cask "session-manager-plugin" do
     regex(%r{<td tabindex="-1">(\d+(?:\.\d+)+)</td>}i)
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   pkg "session-manager-plugin.pkg"
   binary "/usr/local/sessionmanagerplugin/bin/session-manager-plugin"

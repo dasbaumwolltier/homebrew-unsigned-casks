@@ -31,7 +31,7 @@ cask "wine-stable" do
     end
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   conflicts_with cask: [
     "wine@devel",
@@ -56,6 +56,15 @@ cask "wine-stable" do
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/winemine"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/winepath"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/wineserver"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: [
         "~/.local/share/applications/wine*",

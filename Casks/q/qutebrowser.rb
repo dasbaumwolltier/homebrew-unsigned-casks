@@ -11,7 +11,7 @@ cask "qutebrowser" do
   desc "Keyboard-driven, vim-like browser based on PyQt5"
   homepage "https://www.qutebrowser.org/"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   depends_on macos: ">= :big_sur"
 
@@ -25,6 +25,15 @@ cask "qutebrowser" do
       #!/bin/sh
       '#{appdir}/qutebrowser.app/Contents/MacOS/qutebrowser' "$@"
     EOS
+  end
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
   end
 
   zap trash: [

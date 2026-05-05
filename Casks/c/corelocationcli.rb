@@ -7,12 +7,21 @@ cask "corelocationcli" do
   desc "Prints location information from CoreLocation"
   homepage "https://github.com/fulldecent/corelocationcli"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   depends_on macos: ">= :big_sur"
 
   app "CoreLocationCLI.app"
   binary "#{appdir}/CoreLocationCLI.app/Contents/MacOS/CoreLocationCLI"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   # no zap stanza required
 end

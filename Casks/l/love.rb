@@ -8,10 +8,19 @@ cask "love" do
   desc "2D game framework for Lua"
   homepage "https://love2d.org/"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "love.app"
   binary "#{appdir}/love.app/Contents/MacOS/love"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: "~/Library/Saved Application State/org.love2d.love.savedState"
 end

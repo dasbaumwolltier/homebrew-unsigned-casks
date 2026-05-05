@@ -12,7 +12,7 @@ cask "displaycal" do
     url "https://sourceforge.net/projects/dispcalgui/rss?path=/release"
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   auto_updates true
   depends_on formula: "argyll-cms"

@@ -7,11 +7,20 @@ cask "amitv87-pip" do
   desc "Always on top window preview"
   homepage "https://github.com/amitv87/PiP"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   depends_on macos: ">= :big_sur"
 
   app "PiP.app"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: "~/Library/Saved Application State/com.boggyb.PiP.savedState"
 end

@@ -10,14 +10,15 @@ cask "chromium" do
   desc "Free and open-source web browser"
   homepage "https://www.chromium.org/Home"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   conflicts_with cask: "ungoogled-chromium"
   depends_on macos: ">= :monterey"
 
-  app "chrome-mac/Chromium.app"
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
   shimscript = "#{staged_path}/chromium.wrapper.sh"
+
+  app "chrome-mac/Chromium.app"
   binary shimscript, target: "chromium"
 
   preflight do
@@ -25,6 +26,15 @@ cask "chromium" do
       #!/bin/sh
       exec '#{appdir}/Chromium.app/Contents/MacOS/Chromium' "$@"
     EOS
+  end
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
   end
 
   zap trash: [

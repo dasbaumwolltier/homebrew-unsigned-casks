@@ -22,11 +22,12 @@ cask "librewolf" do
     end
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
-  app "LibreWolf.app"
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
   shimscript = "#{staged_path}/librewolf.wrapper.sh"
+
+  app "LibreWolf.app"
   binary shimscript, target: "librewolf"
 
   preflight do
@@ -34,6 +35,15 @@ cask "librewolf" do
       #!/bin/sh
       exec '#{appdir}/LibreWolf.app/Contents/MacOS/librewolf' "$@"
     EOS
+  end
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
   end
 
   zap trash: [

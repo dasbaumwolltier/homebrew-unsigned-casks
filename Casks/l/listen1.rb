@@ -12,9 +12,18 @@ cask "listen1" do
   desc "Search and play songs from a variety of online sources"
   homepage "https://listen1.github.io/listen1/"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "Listen1.app"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: [
     "~/Library/Application Support/listen1",

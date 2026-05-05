@@ -17,13 +17,14 @@ cask "alex313031-thorium" do
     strategy :github_latest
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   depends_on macos: ">= :big_sur"
 
-  app "Thorium.app", target: "Thorium Browser.app"
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
   shimscript = "#{staged_path}/thorium.wrapper.sh"
+
+  app "Thorium.app", target: "Thorium Browser.app"
   binary shimscript, target: "thorium"
 
   preflight do
@@ -31,6 +32,15 @@ cask "alex313031-thorium" do
       #!/bin/bash
       exec '#{appdir}/Thorium Browser.app/Contents/MacOS/Thorium' "$@"
     EOS
+  end
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
   end
 
   zap trash: [

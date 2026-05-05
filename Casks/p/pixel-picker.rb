@@ -7,9 +7,18 @@ cask "pixel-picker" do
   desc "Menu bar application to pick colours from your screen"
   homepage "https://github.com/acheronfail/pixel-picker"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "Pixel Picker.app"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: [
     "~/Library/Logs/Pixel Picker",

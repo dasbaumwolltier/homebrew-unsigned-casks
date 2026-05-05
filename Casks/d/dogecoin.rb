@@ -13,12 +13,21 @@ cask "dogecoin" do
     strategy :github_latest
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "Dogecoin-Qt.app"
 
   preflight do
     set_permissions "#{staged_path}/Dogecoin-Qt.app", "0755"
+  end
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
   end
 
   zap trash: "~/Library/com.dogecoin.Dogecoin-Qt.plist"

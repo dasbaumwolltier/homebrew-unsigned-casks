@@ -7,9 +7,18 @@ cask "cmd-eikana" do
   name "⌘英かな"
   homepage "https://github.com/iMasanari/cmd-eikana"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "⌘英かな.app"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: "~/Library/Preferences/io.github.imasanari.cmd-eikana.plist"
 

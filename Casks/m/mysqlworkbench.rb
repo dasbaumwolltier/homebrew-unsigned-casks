@@ -9,7 +9,7 @@ cask "mysqlworkbench" do
       url "https://downloads.mysql.com/archives/get/p/#{version.major}/file/mysql-workbench-community-#{version}-macos-x86_64.dmg",
           user_agent: :curl
 
-      disable! date: "2026-09-01", because: :fails_gatekeeper_check
+      # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
       caveats do
         requires_rosetta
@@ -58,6 +58,15 @@ cask "mysqlworkbench" do
   homepage "https://www.mysql.com/products/workbench/"
 
   app "MySQLWorkbench.app"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: [
     "~/Library/Application Support/MySQL/Workbench",

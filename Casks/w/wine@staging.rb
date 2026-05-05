@@ -31,7 +31,7 @@ cask "wine@staging" do
     end
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   conflicts_with cask: [
     "wine-stable",
@@ -39,8 +39,9 @@ cask "wine@staging" do
   ]
   depends_on cask: "gstreamer-runtime"
 
-  app "Wine Staging.app"
   dir_path = "#{appdir}/Wine Staging.app/Contents/Resources"
+
+  app "Wine Staging.app"
   binary "#{dir_path}/start/bin/appdb"
   binary "#{dir_path}/start/bin/winehelp"
   binary "#{dir_path}/wine/bin/msidb"
@@ -57,6 +58,15 @@ cask "wine@staging" do
   binary "#{dir_path}/wine/bin/winemine"
   binary "#{dir_path}/wine/bin/winepath"
   binary "#{dir_path}/wine/bin/wineserver"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: [
         "~/.local/share/applications/wine*",

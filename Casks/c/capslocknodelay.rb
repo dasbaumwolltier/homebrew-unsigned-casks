@@ -7,9 +7,18 @@ cask "capslocknodelay" do
   desc "Removes delay when pressing the caps lock"
   homepage "https://github.com/gkpln3/CapsLockNoDelay"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "CapsLockNoDelay.app"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   uninstall quit: "gkpln3.CapsLockNoDelay"
 

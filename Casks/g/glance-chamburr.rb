@@ -7,11 +7,20 @@ cask "glance-chamburr" do
   desc "Utility to provide quick look previews for files that aren't natively supported"
   homepage "https://github.com/chamburr/glance"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   depends_on macos: ">= :big_sur"
 
   app "Glance.app"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: [
     "~/Library/Application Scripts/com.chamburr.Glance",

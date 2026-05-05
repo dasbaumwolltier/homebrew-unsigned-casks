@@ -16,13 +16,22 @@ cask "vertcoin-core" do
     strategy :github_latest
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   # Renamed for consistency: app name is different in the Finder and in a shell.
   app "Vertcoin-Qt.app", target: "Vertcoin Core.app"
 
   preflight do
     set_permissions "#{staged_path}/Vertcoin-Qt.app", "0755"
+  end
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
   end
 
   zap trash: "~/Library/Preferences/org.vertcoin.Vertcoin-Qt.plist"

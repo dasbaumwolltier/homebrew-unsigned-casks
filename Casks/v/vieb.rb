@@ -11,13 +11,14 @@ cask "vieb" do
   desc "Vim Inspired Electron Browser"
   homepage "https://vieb.dev/"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   depends_on macos: ">= :monterey"
 
-  app "Vieb.app"
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
   shimscript = "#{staged_path}/vieb.wrapper.sh"
+
+  app "Vieb.app"
   binary shimscript, target: "vieb"
 
   preflight do
@@ -25,6 +26,15 @@ cask "vieb" do
       #!/bin/sh
       exec '#{appdir}/Vieb.app/Contents/MacOS/Vieb' "$@"
     EOS
+  end
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
   end
 
   zap trash: [

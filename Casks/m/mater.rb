@@ -22,13 +22,22 @@ cask "mater" do
     depends_on macos: ">= :catalina"
 
     app "Mater-darwin-x64/Mater.app"
+
+    postflight do |c|
+      c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+        system_command "/usr/bin/xattr",
+                       args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                       must_succeed: false,
+                       print_stderr: false
+      end
+    end
   end
 
   name "Mater"
   desc "Menubar pomodoro app"
   homepage "https://github.com/jasonlong/mater"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   zap trash: [
     "~/Library/Application Support/mater",

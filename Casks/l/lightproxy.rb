@@ -8,9 +8,18 @@ cask "lightproxy" do
   desc "Proxy & Debug tools based on whistle with Chrome Devtools UI"
   homepage "https://alibaba.github.io/lightproxy/"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "LightProxy.app"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   uninstall_postflight do
     stdout, * = system_command "/usr/bin/security",

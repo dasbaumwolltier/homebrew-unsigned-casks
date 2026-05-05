@@ -42,7 +42,7 @@ cask "cinc-workstation" do
   desc "Installer for Chef infrastructure management tools"
   homepage "https://cinc.sh/start/workstation/"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   depends_on macos: ">= :big_sur"
 

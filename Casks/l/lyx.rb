@@ -13,7 +13,7 @@ cask "lyx" do
     regex(/LyX[._-]v?(\d+(?:\.\d+)+)\+qt5/i)
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "LyX.app"
   binary "#{appdir}/LyX.app/Contents/MacOS/inkscape", target: "lyx-inkscape"
@@ -23,6 +23,15 @@ cask "lyx" do
   binary "#{appdir}/LyX.app/Contents/MacOS/lyxeditor"
   binary "#{appdir}/LyX.app/Contents/MacOS/maxima", target: "lyx-maxima"
   binary "#{appdir}/LyX.app/Contents/MacOS/tex2lyx"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: [
     "~/Library/Application Support/LyX-#{version.major_minor}",

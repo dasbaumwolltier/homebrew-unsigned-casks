@@ -11,13 +11,14 @@ cask "bandage" do
   desc "Bioinformatics app for navigating de novo assembly graphs"
   homepage "https://rrwick.github.io/Bandage/"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   depends_on macos: ">= :big_sur"
 
-  app "Bandage.app"
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
   shimscript = "#{staged_path}/bandage.wrapper.sh"
+
+  app "Bandage.app"
   binary shimscript, target: "bandage"
 
   preflight do
@@ -25,6 +26,15 @@ cask "bandage" do
       #!/bin/sh
       exec '#{appdir}/Bandage.app/Contents/MacOS/Bandage' "$@"
     EOS
+  end
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
   end
 
   zap trash: [

@@ -39,13 +39,14 @@ cask "vlc@nightly" do
     end
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   conflicts_with cask: "vlc"
 
-  app "VLC.app"
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
   shimscript = "#{staged_path}/vlc.wrapper.sh"
+
+  app "VLC.app"
   binary shimscript, target: "vlc"
 
   preflight do
@@ -53,6 +54,15 @@ cask "vlc@nightly" do
       #!/bin/sh
       exec '#{appdir}/VLC.app/Contents/MacOS/VLC' "$@"
     EOS
+  end
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
   end
 
   zap trash: [

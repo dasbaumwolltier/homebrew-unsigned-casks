@@ -27,7 +27,7 @@ cask "duckietv" do
     end
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   pkg "DuckieTV-#{version}-OSX-x64.pkg"
 

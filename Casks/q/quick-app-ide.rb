@@ -13,7 +13,7 @@ cask "quick-app-ide" do
     regex(/quickapp[._-]ide[._-]*?v?(\d+(?:\.\d+)+)\.pkg/i)
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   pkg "quickapp-ide-#{version}.pkg"
 

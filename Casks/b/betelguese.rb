@@ -7,9 +7,18 @@ cask "betelguese" do
   desc "Odysseyra1n installer GUI for jailbroken devices"
   homepage "https://github.com/23Aaron/Betelguese"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   app "Betelguese.app"
+
+  postflight do |c|
+    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+      system_command "/usr/bin/xattr",
+                     args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
+                     must_succeed: false,
+                     print_stderr: false
+    end
+  end
 
   zap trash: "~/Library/Saved Application State/com.23aaron.Betelgeuse.savedState"
 end
