@@ -1,7 +1,7 @@
 cask "clickhouse" do
   arch arm: "-aarch64"
 
-  version "26.1.3.52-stable"
+  version "26.3.9.8-lts"
   sha256 arm:   "1a21e77e4b48006e9842a564413a7bf94f924b6fde18b03a7af07bfa3957d738",
          intel: "54caf7a2903bc441544d5c76cd065a22a7d9c99b1a0982cc80a4a3144da9f770"
 

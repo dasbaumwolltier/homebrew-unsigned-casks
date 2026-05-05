@@ -1,7 +1,7 @@
 cask "chromedriver@beta" do
   arch arm: "arm64", intel: "x64"
 
-  version "146.0.7680.16"
+  version "148.0.7778.96"
   sha256 arm:   "29c44a53be87fccea4a7887a7ed2b45b5812839e357e091c6a784ee17bb8da78",
          intel: "317cdb925ce677812ff83605ac9f5ed63f1d26467f393385a7801a8cb73022e3"
 

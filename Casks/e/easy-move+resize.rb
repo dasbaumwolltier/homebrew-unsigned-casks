@@ -1,5 +1,5 @@
 cask "easy-move+resize" do
-  version "1.8.0"
+  version "1.8.1"
   sha256 "c8a93e5917f13ea1dd474e6fb0f2f8a5333202d74fa4e05f711c08fd9af38eb9"
 
   url "https://github.com/dmarcotte/easy-move-resize/releases/download/#{version}/Easy.Move+Resize.app.zip"

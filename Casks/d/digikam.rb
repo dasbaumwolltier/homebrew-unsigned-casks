@@ -1,7 +1,7 @@
 cask "digikam" do
   arch arm: "Qt6-MacOS-arm64", intel: "Qt5-MacOS-x86_64"
 
-  version "8.8.0"
+  version "9.0.0"
   sha256 arm:   "121001a74b9069e7be22eda13f20a3ded98409203c59e658d25695b3986e71ac",
          intel: "fd4058246b670ecb7dffe10afbe3ee9bb51419980574ac2ebc879dca94c8b573"
 

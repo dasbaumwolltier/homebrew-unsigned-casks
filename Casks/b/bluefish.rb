@@ -1,5 +1,5 @@
 cask "bluefish" do
-  version "2.4.0"
+  version "2.4.1"
   sha256 "a07229868bff403fe2fbdb055a6bcdae8b7294b777b0bfb6153eaeac2ef53bf2"
 
   url "https://www.bennewitz.com/bluefish/stable/binaries/macosx/Bluefish-#{version}.dmg",
