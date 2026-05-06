@@ -1,7 +1,7 @@
 cask "salesforce-cli" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.123.1,d33a2e4"
+  version "2.132.14,d9bb050"
   sha256 arm:   "584e997019fd69d98ee35f8ad9d618ed1fbf723a45f614fec0c8bec7c94ac1ad",
          intel: "e661cf2f6578d4b3adeb8f95236e03221b551e775bfef4aec415a6a0e38c0e9a"
 

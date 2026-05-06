@@ -1,7 +1,7 @@
 cask "veusz" do
   arch arm: "arm", intel: "x86_64"
 
-  version "4.2"
+  version "4.2.1"
   sha256 arm:   "0cfef00226d58631b27cfcc0e300f8f12d2bb16a95349757e92fe9008fc4ffff",
          intel: "1c23d385ecc021e63fc2bf8459a173aca3684816763dd32bdf61f90ced53d7f3"
 

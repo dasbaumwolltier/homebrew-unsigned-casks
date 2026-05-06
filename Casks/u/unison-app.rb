@@ -1,7 +1,7 @@
 cask "unison-app" do
   arch arm: "arm64", intel: "x86-64"
 
-  version "2.53.8"
+  version "2.54.0"
   sha256 arm:   "9ffaa166aff2bf7357d365a67dbd941a71534d5a7e65493920ebb1a804f38c89",
          intel: "4f3d8d5c2098df220b3e45bd84c9842ebf7139a595243c9533ab953cff0e95d7"
 

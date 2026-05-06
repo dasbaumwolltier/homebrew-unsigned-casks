@@ -1,7 +1,7 @@
 cask "powershell" do
   arch arm: "arm64", intel: "x64"
 
-  version "7.5.4"
+  version "7.6.1"
   sha256 arm:   "027fbaf50c744a63d2fe13a3edafbdb60a08af646e8d553833f0ebc1eb3fbe42",
          intel: "8a8d1e8aed81f97ee9d8b2c756bd512e29d8d1a9660ba2aee7ac2e3171b06106"
 

@@ -1,7 +1,7 @@
 cask "spaceradar" do
   arch arm: "arm64", intel: "x64"
 
-  version "6.0.0"
+  version "6.0.1"
   sha256 arm:   "bbf6a80330208e36ca7ed260ee1c00766dc1f46814632ca709b109a4b9fd31ed",
          intel: "2ecc3b510ff214b25bc3791ea84b4192b0b3839d03e69ae716aaecdcc4d40eda"
 

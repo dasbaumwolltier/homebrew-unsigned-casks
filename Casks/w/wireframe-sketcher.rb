@@ -1,7 +1,7 @@
 cask "wireframe-sketcher" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "7.4.2"
+  version "7.4.3"
   sha256 arm:   "0c5304b2e8bcbca7de7c705673bee0f7f204a6f0895e6b10016d107db95897f0",
          intel: "2a7d7863b4dfd88f94074b24082b00a192bd6f0d1c6b76afa5ce5f0e360ed9cc"
 

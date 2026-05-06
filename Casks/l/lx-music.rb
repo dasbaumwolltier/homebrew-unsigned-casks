@@ -1,7 +1,7 @@
 cask "lx-music" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.12.1"
+  version "2.12.2"
   sha256 arm:   "92f2c04dfa0959e3aabaa0ac9717e97a55adf79cbce08e22a1c1e92b77bbc04f",
          intel: "c50f148503d75e841e5acd44dd14a916aa1d87385a3290318e793b56b1807aef"
 

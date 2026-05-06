@@ -1,5 +1,5 @@
 cask "tribler" do
-  version "8.3.1"
+  version "8.4.2"
   sha256 "6a37959aa4b89464d863ee663be869459faaf1bc38189797fea69a5b9293b719"
 
   url "https://github.com/Tribler/tribler/releases/download/v#{version}/Tribler-#{version}.dmg"

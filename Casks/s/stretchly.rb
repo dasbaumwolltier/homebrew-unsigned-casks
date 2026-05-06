@@ -1,7 +1,7 @@
 cask "stretchly" do
   arch arm: "-arm64"
 
-  version "1.20.0"
+  version "1.21.0"
   sha256 arm:   "277b8c5649aad01182f224abcda21b154775531ca4aacd71d6cff359d435584d",
          intel: "799f14585d0220abdd500e57cd9775a48505f894cbd2eca83f57c9cf0a45f620"
 

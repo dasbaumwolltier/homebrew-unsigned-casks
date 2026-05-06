@@ -2,7 +2,7 @@ cask "tidelift" do
   arch arm: "_arm"
   os macos: "darwin", linux: "linux"
 
-  version "1.16.46"
+  version "1.16.57"
   sha256 arm:          "a6af524ef6d83aadc72a2ecc7cd0ed091e483c79858022821e30a4e9292f9957",
          intel:        "2850331bb09064ebb4b4a050b8fa7ecd3178ca185938198da4726dac2ffb4169",
          arm64_linux:  "8b6dd4674318e22214707244379706207ef04f17b98f5f4c3b296a0f21139cee",

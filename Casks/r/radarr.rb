@@ -1,7 +1,7 @@
 cask "radarr" do
   arch arm: "arm64", intel: "x64"
 
-  version "6.0.4.10291"
+  version "6.1.1.10360"
   sha256 arm:   "bd0ad6a189abd55e6d98dba0747af3f084b95158fc4908b56d831f20558ae7cd",
          intel: "c7767552123b947a928ccc99c80a76912ec0358ff2c8f7442aae69f0c1e5c13b"
 

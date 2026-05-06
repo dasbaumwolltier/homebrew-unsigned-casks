@@ -1,5 +1,5 @@
 cask "miaoyan" do
-  version "2.5.2"
+  version "3.5.1"
   sha256 "70f1c001911b7b7ecbb4404b68ca33a76200c61ea99a14f719016d2e285656d2"
 
   url "https://miaoyan.app/Release/MiaoYan_V#{version}.zip"

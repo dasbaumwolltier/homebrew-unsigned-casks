@@ -1,7 +1,7 @@
 cask "vieb" do
   arch arm: "arm64-"
 
-  version "12.6.0"
+  version "12.8.0"
   sha256 arm:   "fd06688ba5e6f724a6a4fd6d5b3f55b93aada20755e84c8764acf0809771a4cc",
          intel: "3f0a658ef47c8a10ab0a186f182291c004caf4652551848b6af112560ae50b15"
 

@@ -1,7 +1,7 @@
 cask "session-manager-plugin" do
   arch arm: "_arm64"
 
-  version "1.2.779.0"
+  version "1.2.814.0"
   sha256 arm:   "2457c5926db31f6db2cfe606ba37ef67169604baf4aa6bac44f8213cd728e5ce",
          intel: "8005072e18f6f402d208ae08ed21f18af81765a755a07dd7b9023757db29457d"
 

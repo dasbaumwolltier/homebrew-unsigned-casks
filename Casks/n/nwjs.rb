@@ -1,7 +1,7 @@
 cask "nwjs" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.108.0"
+  version "0.111.1"
   sha256 arm:   "ae2e703fff97f0eec666246ff87f032555e8ea15249ebcbabdd172af92eff076",
          intel: "a3b213cdb8738529bc1c1ab63d3fa62e98344bc7afd1c76bdc1a68f16f65320b"
 

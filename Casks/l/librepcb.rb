@@ -1,7 +1,7 @@
 cask "librepcb" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "2.0.0"
+  version "2.0.1"
   sha256 arm:   "729bacf2493378fd4809f8b8700eae44db6b63a4d3e2337f583c3e62d823896a",
          intel: "784c23dca953d3eac1132a288a2fa4d430aef26ce99bf89b864e911293ea9a20"
 

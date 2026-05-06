@@ -1,5 +1,5 @@
 cask "syncterm" do
-  version "1.7"
+  version "1.8"
   sha256 "669c9861d278221e17c3d4b19c3c551c03b7a2c7d3d7be8e33a85c3d8c94ba97"
 
   url "https://downloads.sourceforge.net/syncterm/syncterm/syncterm-#{version}/syncterm-#{version}-macos.zip",

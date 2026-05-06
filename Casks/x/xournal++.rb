@@ -1,7 +1,7 @@
 cask "xournal++" do
   arch arm: "ARM64", intel: "X64"
 
-  version "1.3.2"
+  version "1.3.4"
   sha256 arm:   "6040c407a85a4e1fa37bdea254420373edc7d256722f85bf49b1c4b2016f8be1",
          intel: "1ba92c4362e4ce7ab3f3ff188a1f8295a1e089887f721b5ae02738470c435691"
 

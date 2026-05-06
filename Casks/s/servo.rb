@@ -1,7 +1,7 @@
 cask "servo" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "2026-02-21"
+  version "2026-05-05"
   sha256 arm:   "a2383ec0ef36ac77ab2fbe1657ac0ee6321af1e69153438a7952a0678961fde9",
          intel: "3b165de82ca411bc5a614bf47528fd83b569dc9ce30fdb6aa3f65235a41604f0"
 

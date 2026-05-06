@@ -1,7 +1,7 @@
 cask "oso-cloud" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "0.35.0"
+  version "0.36.1"
   sha256 arm:   "52cd1e19cd5672a1db1a3ae6f1410085f8a91ebb2a4ef70a44550ddf0039ccd5",
          intel: "e2f9ff6fad2942c2ba7cd696c54a21bdb1c64d3e5b7b7d746713cb4a03c44394"
 

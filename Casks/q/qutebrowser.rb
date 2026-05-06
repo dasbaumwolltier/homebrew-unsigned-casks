@@ -1,7 +1,7 @@
 cask "qutebrowser" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "3.6.3"
+  version "3.7.0"
   sha256 arm:   "2a4fae5acd90268b9a0fd53999adc026c4781eda96fc1961f3333d15a8f5bb4d",
          intel: "0afb91af650548a6f52ff94e6875001fb72d94e0c5fb8d0afe4fa0a099b31dc8"
 

@@ -1,7 +1,7 @@
 cask "sonarr" do
   arch arm: "arm64", intel: "x64"
 
-  version "4.0.16.2944"
+  version "4.0.17.2952"
   sha256 arm:   "88f3fed9de4e5bce11ce735bc7d34d6f7f14504108c0fed86ab12bc9558a731d",
          intel: "b17b90e163e89bb438c1ffd896ead16ffce96b6fb27c05dc96acef80bc84e06f"
 

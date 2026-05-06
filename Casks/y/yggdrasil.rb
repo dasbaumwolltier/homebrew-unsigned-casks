@@ -1,7 +1,7 @@
 cask "yggdrasil" do
   arch arm: "arm64", intel: "amd64"
 
-  version "0.5.12"
+  version "0.5.13"
   sha256 arm:   "631b1d841c7bcf2fdc870f0ef9294500ff04322498f0d9f1bef3354083d506ca",
          intel: "d574e03247be3b00633b1300c326b3d1e856c06dd82df52886965ee3cc166fce"
 

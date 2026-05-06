@@ -1,7 +1,7 @@
 cask "texstudio" do
   arch arm: "-m1"
 
-  version "4.9.2"
+  version "4.9.3"
   sha256 arm:   "b404caf563ec3f7de953cf7368b8a04c572bd327d17763464a5f95e757c35099",
          intel: "1cd7a9585bf135122ec95555347152789d093e54a5811ffd48327f069e534f6e"
 

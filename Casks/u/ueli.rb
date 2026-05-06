@@ -1,7 +1,7 @@
 cask "ueli" do
   arch arm: "-arm64"
 
-  version "9.27.1"
+  version "9.28.0"
   sha256 arm:   "d8465098f5650fb63625c05619e6bddcac81cc4b8ae8bea9d736d29325199217",
          intel: "765371fda9f71ad3b078eefbecf38dd9509e0bc945fed235ea18f7753d4c34f1"
 

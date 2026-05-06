@@ -1,7 +1,7 @@
 cask "universal-gcode-platform" do
   arch arm: "aarch64", intel: "x64"
 
-  version "2.1.20"
+  version "2.1.22"
   sha256 arm:   "2989b9f15a9ad85e5218165ffcbb427a8858e1790f6c5daaec922bb6ed5a405b",
          intel: "28749c41ae345873ff8fd3a509631d919e086166cb4e065bf80b9caed11c62e8"
 

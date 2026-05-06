@@ -1,7 +1,7 @@
 cask "alex313031-thorium" do
   arch arm: "ARM", intel: "X64"
 
-  version "M130.0.6723.174"
+  version "M138.0.7204.303"
   sha256  arm:   "ba1c45a52962c5f7d9b293757b1ca7456171e240927c30dcdaf7fd48d2dc8c04",
           intel: "1c92f610b56bc893b4bb11d7513366b1f991e60918d8e5feba927b5f1da66cff"
 
