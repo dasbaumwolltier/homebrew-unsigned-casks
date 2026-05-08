@@ -25,7 +25,11 @@ cask "v2rayu" do
   app "V2rayU.app"
 
   postflight do |c|
-    c.cask.artifacts.grep(Cask::Artifact::App).each do |artifact|
+    app_artifacts = c.cask.artifacts.select do |artifact|
+      artifact.respond_to?(:target) && artifact.target.to_s.end_with?(".app")
+    end
+
+    app_artifacts.each do |artifact|
       system_command "/usr/bin/xattr",
                      args:         ["-d", "-r", "com.apple.quarantine", artifact.target],
                      must_succeed: false,
