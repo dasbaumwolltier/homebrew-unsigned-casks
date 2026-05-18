@@ -9,7 +9,7 @@ Usage: ./livecheck-tap.sh [--bump] <tap> [brew livecheck options...]
 Run brew livecheck for all casks in the given tap.
 
 Options:
-  --bump      Update outdated casks by editing the local cask file version
+  --bump      Update outdated casks using `brew bump-cask-pr --write-only`
   -h, --help  Show this help text
 
 Examples:
@@ -32,37 +32,21 @@ tap_casks() {
       | sort \
       | while IFS= read -r file; do
           token=$(basename "$file" .rb)
-          echo "$1/$token;$file"
+          echo "$1/$token"
         done
   done
 }
 
-update_cask_version() {
+update_cask() {
   cask=$1
-  file=$2
-  latest=$3
+  latest=$2
 
-  version_count=$(grep -c '^[[:space:]]*version[[:space:]]*"' "$file")
-  if [ "$version_count" -ne 1 ]; then
-    echo "Skipping $cask: expected exactly one quoted version stanza, found $version_count" >&2
-    return 1
-  fi
-
-  current=$(awk -F'"' '/^[[:space:]]*version[[:space:]]*"/ { print $2; exit }' "$file")
-  if [ -z "$current" ]; then
-    echo "Skipping $cask: could not read current version" >&2
-    return 1
-  fi
-
-  tmp_file=$(mktemp)
-  awk -v current="$current" -v latest="$latest" '
-    done == 0 && $0 ~ /^[[:space:]]*version[[:space:]]*"/ {
-      sub(/"[^"]*"/, "\"" latest "\"")
-      done = 1
-    }
-    { print }
-  ' "$file" > "$tmp_file"
-  mv "$tmp_file" "$file"
+  brew bump-cask-pr \
+    --write-only \
+    --no-audit \
+    --no-style \
+    --version "$latest" \
+    "$cask"
 }
 
 bump=false
@@ -112,17 +96,16 @@ trap 'rm -f "$found_file"' EXIT INT TERM HUP
 
 echo "Scanning tap: $tap"
 
-tap_casks "$tap" | while IFS=';' read -r cask file; do
+tap_casks "$tap" | while IFS= read -r cask; do
   echo
   echo "Checking package: $cask"
 
-  livecheck_outdated "$cask" | while read -r latest; do
-    echo "newer version for $cask $latest"
+  livecheck_outdated "$cask" | while IFS= read -r latest; do
     echo 1 > "$found_file"
     latest=$(echo "$latest" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')
     echo "=== Updating package: $cask ==="
     echo "Target version: $latest"
-    if ! update_cask_version "$cask" "$file" "$latest"; then
+    if ! update_cask "$cask" "$latest"; then
       echo "Failed to update $cask" >&2
     fi
   done
