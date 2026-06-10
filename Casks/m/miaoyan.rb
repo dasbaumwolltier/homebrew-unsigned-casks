@@ -2,17 +2,10 @@ cask "miaoyan" do
   version "3.5.1"
   sha256 "70f1c001911b7b7ecbb4404b68ca33a76200c61ea99a14f719016d2e285656d2"
 
-  url "https://miaoyan.app/Release/MiaoYan_V#{version}.zip"
+  url "https://github.com/marktext/marktext/releases/download/V#{version}/MiaoYan.dmg"
   name "MiaoYan"
   desc "Markdown editor"
   homepage "https://miaoyan.app/"
-
-  livecheck do
-    url "https://miaoyan.app/appcast.xml"
-    strategy :sparkle do |items|
-      items.map(&:nice_version)
-    end
-  end
 
   # disable! date: "2026-09-01", because: :fails_gatekeeper_check
 

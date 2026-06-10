@@ -1,9 +1,9 @@
 cask "librepcb" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "2.0.1"
-  sha256 arm:   "729bacf2493378fd4809f8b8700eae44db6b63a4d3e2337f583c3e62d823896a",
-         intel: "784c23dca953d3eac1132a288a2fa4d430aef26ce99bf89b864e911293ea9a20"
+  version "2.1.0"
+  sha256 arm:   "c7dfd88604d62b88c93229a092f0f16816e6051d702005d7c5e7c2b31516efe7",
+         intel: "838b586a6e1c191755356a4c9c3a1ebbb4edeceba75f8bea3a3f4665b5d0c01b"
 
   on_intel do
     # disable! date: "2026-09-01", because: :fails_gatekeeper_check
