@@ -1,9 +1,9 @@
 cask "fedora-media-writer" do
   arch arm: "-arm64"
 
-  version "5.2.9"
-  sha256 arm:   "b87ef52ffe7b41da43f60148223c410b268352688f07f0d35beed5b1f6c41b6e",
-         intel: "251d07b5c4e755b72e44edd60af11227cab864fb710bd29480756e90a2332a9f"
+  version "5.3.1"
+  sha256 arm:   "7ea78e3ac5a008af78e50559ae7a59a73e93860e50ddb5a16c429f6629a41cbb",
+         intel: "cb9b60cba14db394ddd232ad582d7244780e5231d41d6d8166cc16343baa30a9"
 
   url "https://github.com/FedoraQt/MediaWriter/releases/download/#{version}/FedoraMediaWriter-macos#{arch}-#{version}.dmg",
       verified: "github.com/FedoraQt/MediaWriter/"

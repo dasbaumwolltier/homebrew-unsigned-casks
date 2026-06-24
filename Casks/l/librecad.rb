@@ -1,9 +1,9 @@
 cask "librecad" do
   arch arm: "-arm64"
 
-  version "2.2.1.3,2.2.1.3-2-g1598766fb"
-  sha256 arm:   "b1c7f4559bccc3dd21aff089eef5a72c7fd8cd807340ff81aa46c960ca2e7385",
-         intel: "5253704089d7e505f770cf618bd4b9366d9fdfb98c8ad3d4fed02db7c09c082b"
+  version "2.2.1.5"
+  sha256 arm:   "0c6ce2e25a027ff3e921b74101d1c4e167687d2386fe0798f2f4c37d12deb436",
+         intel: "34369e791af12e414d6e08c0954f679990706215a07b569a8eb7b9a6fa115f38"
 
   url "https://github.com/LibreCAD/LibreCAD/releases/download/v#{version.csv.first}/LibreCAD-v#{version.csv.second || version.csv.first}#{arch}.dmg",
       verified: "github.com/LibreCAD/LibreCAD/"

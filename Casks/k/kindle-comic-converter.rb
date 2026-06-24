@@ -1,9 +1,9 @@
 cask "kindle-comic-converter" do
   arch arm: "arm", intel: "i386"
 
-  version "9.4.3"
-  sha256 arm:   "d4232857100fd72b524b37a3a685826060a1806bc98803f2b87fcd1be58f8f05",
-         intel: "36104595815b391f0ce224b322791385f303facd0e739a3f6200f400a674c724"
+  version "10.2.0"
+  sha256 arm:   "3aa84049ed9b7d46b5bbb66042a96a384a22d1658c9a9336f4d0a90b2dde5075",
+         intel: "05cf5b8ec3f9d319b27e05243e551092e3e5729b7c2c6226decdce9fa42f5c29"
 
   on_arm do
     depends_on macos: ">= :big_sur"
